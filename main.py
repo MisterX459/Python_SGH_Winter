@@ -1,16 +1,38 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from itertools import count
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def check_if_valid_email(email):
+    is_valid = False
+    if email.strip() == "":
+        is_valid = False
+        print("Your email is empty")
+    elif len(email.strip()) < 10:
+        is_valid = False
+        print("Your email is too short")
+    elif "@" not in email:
+        print("Your email is missing @")
+    elif "." not in email:
+        print("Your email has no dots")
+    elif " " in email:
+        print("Your email has spaces")
+    elif email.index(".") < email.index("@"):
+        print("Your email is invalid")
+    elif  not email.isascii():
+        print("Your email contains non English characters")
+    elif "." not in email.split("@")[1]:
+        print("Your domain has no dots")
+    elif ".." in email:
+        print("Your email can not have consecutive dots")
+    elif email.count(".") < 3:
+        print("Your emails looks not valid due to small amount of dots")
+    else:
+        is_valid = True
+        print("Your email is valid")
+
+    return is_valid
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+user_input = input("Enter your email: ")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+res = check_if_valid_email(user_input)
+
